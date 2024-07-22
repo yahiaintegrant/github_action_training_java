@@ -1,7 +1,7 @@
 name: first_work_flow
 on: workflow_dispatch
 jobs:
-  first-job:
+  build:
     runs-on: ubuntu-latest
     steps: 
       - name: checkout
@@ -13,3 +13,17 @@ jobs:
           java-version: '21'
       - name: run maven
         run: mvn clean install 
+      - name: upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: test_project
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: get artfact
+        uses: actions/download-artifact@v4
+        with:
+          name: test_project
+      - name: output context
+        run: ls
