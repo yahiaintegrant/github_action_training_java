@@ -6,5 +6,7 @@ jobs:
     steps: 
       - name: checkout
         uses: actions/checkout@v4
-      - name: print goodbye
-        run: echo "good bye "
+      - name: setup java
+        uses: actions/setup-java@v4
+      - name: run maven
+        run: mvn clean install 
