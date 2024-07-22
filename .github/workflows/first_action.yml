@@ -8,5 +8,7 @@ jobs:
         uses: actions/checkout@v4
       - name: setup java
         uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
       - name: run maven
         run: mvn clean install 
